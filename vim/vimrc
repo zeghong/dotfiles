@@ -8,3 +8,6 @@ filetype plugin indent on
 
 # Don't create backup files
 set nowb
+
+# Show line numbers
+set number
