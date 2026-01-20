@@ -1,5 +1,11 @@
 # Bash-specific history configuration
 
+# Set HISTFILE to XDG-compliant path
+_hist_dir="${XDG_STATE_HOME:-$HOME/.local/state}/bash"
+[[ ! -d "$_hist_dir" ]] && mkdir -p "$_hist_dir"
+HISTFILE="$_hist_dir/history"
+unset _hist_dir
+
 # Append to history file instead of overwriting
 shopt -s histappend
 
