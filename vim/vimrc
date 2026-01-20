@@ -5,3 +5,6 @@ syntax on
 
 # Enable filetype plugins & indent files
 filetype plugin indent on
+
+# Don't create backup files
+set nowb
