@@ -1,0 +1,7 @@
+vim9script
+
+# Enable syntax highlighting
+syntax on
+
+# Enable filetype plugins & indent files
+filetype plugin indent on
