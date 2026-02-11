@@ -10,4 +10,10 @@ var gopls = {
   args: ['serve'],
 }
 
+
+var options = {
+  'ignoreMissingServer': true,
+}
+
+call LspOptionsSet(options)
 call LspAddServer([gopls])
