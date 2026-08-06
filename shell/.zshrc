@@ -11,6 +11,7 @@ source "$_shell_root/go.sh"
 # Initialize Zsh completion after configuring its cache
 source "$_shell_root/cache.zsh"
 source "$_shell_root/completion.zsh"
+source "$_shell_root/history.zsh"
 
 # Cleanup temporary variable
 unset _shell_root

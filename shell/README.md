@@ -41,6 +41,20 @@ Link this directory to the Zsh configuration directory:
 ln -s /path/to/dotfiles/shell "${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 ```
 
+### Zsh history
+
+Zsh history is stored at `$XDG_STATE_HOME/zsh/history`, defaulting to
+`$HOME/.local/state/zsh/history`. New directories and files use permissions
+`0700` and `0600`, respectively; existing permissions are left unchanged.
+
+Commands are written after they finish, including their start times and
+durations. Other sessions are not imported automatically, consecutive duplicate
+commands are ignored, and commands starting with a space are not saved.
+
+If the XDG location is unavailable, history falls back to `$HOME/.zsh_history`.
+If neither location is usable, `HISTFILE` is set to `/dev/null` and persistent
+history is disabled for that shell.
+
 ## Completion
 
 Zsh's native completion system is initialized with `compinit`. Its cache is
