@@ -17,6 +17,16 @@ Source the Bash configuration from `~/.bashrc`:
 source /path/to/dotfiles/shell/.bashrc
 ```
 
+### Bash history
+
+Bash history is stored at `$XDG_STATE_HOME/bash/history`, defaulting to
+`$HOME/.local/state/bash/history`. New directories and files use permissions
+`0700` and `0600`, respectively; existing permissions are left unchanged.
+
+If the XDG location is unavailable, history falls back to `$HOME/.bash_history`.
+If neither location is usable, `HISTFILE` is set to `/dev/null` and persistent
+history is disabled for that shell.
+
 ## Zsh setup
 
 Set the Zsh configuration directory in `~/.zshenv`:
