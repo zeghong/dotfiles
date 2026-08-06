@@ -3,6 +3,12 @@
 Both Bash and Zsh load configuration files explicitly to keep their startup
 order predictable.
 
+## Shared configuration
+
+`$HOME/.local/bin` is added to the front of `PATH` for user-specific
+executables. This directory is defined by the
+[XDG Base Directory Specification](https://specifications.freedesktop.org/basedir/latest/).
+
 ## Bash setup
 
 Source the Bash configuration from `~/.bashrc`:
