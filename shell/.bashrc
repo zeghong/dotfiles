@@ -7,6 +7,7 @@ _shell_root="$(command cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && command pwd)
 # Load shared configuration before Bash-specific configuration
 source "$_shell_root/path.sh"
 source "$_shell_root/go.sh"
+source "$_shell_root/shortcuts.sh"
 source "$_shell_root/history.bash"
 
 # Cleanup temporary variable

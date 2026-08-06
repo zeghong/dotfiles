@@ -9,6 +9,18 @@ order predictable.
 executables. This directory is defined by the
 [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir/latest/).
 
+### General shortcuts
+
+Interactive Bash and Zsh sessions provide these shared shortcuts:
+
+| Shortcut | Command |
+| --- | --- |
+| `ls` | Colorized directory listing on macOS and Linux |
+| `ll` | Colorized long listing on macOS and Linux |
+
+On other Unix platforms, `ls` is left unchanged and `ll` uses `ls -l` without
+assuming support for color options.
+
 ## Bash setup
 
 Source the Bash configuration from `~/.bashrc`:
