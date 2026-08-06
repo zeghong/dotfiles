@@ -13,6 +13,7 @@ source "$_shell_root/shortcuts.sh"
 source "$_shell_root/cache.zsh"
 source "$_shell_root/completion.zsh"
 source "$_shell_root/history.zsh"
+source "$_shell_root/prompt.zsh"
 
 # Cleanup temporary variable
 unset _shell_root
