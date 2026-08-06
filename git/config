@@ -1,3 +1,11 @@
 [core]
     editor = vim
 
+[alias]
+    st = status --short --branch
+    d = diff
+    ds = diff --staged
+    ck = diff --staged --check
+    ap = add --patch
+    lg = log --oneline --decorate --graph -20
+    last = show --patch-with-stat --oneline
