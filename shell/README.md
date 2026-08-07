@@ -6,7 +6,7 @@ order predictable.
 ## Shared configuration
 
 `$HOME/.local/bin` is added to the front of `PATH` for user-specific
-executables. This directory is defined by the
+executables. This directory is recommended by the
 [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir/latest/).
 
 ### General shortcuts
