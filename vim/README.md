@@ -4,6 +4,24 @@ Personal Vim 9+ configuration using Vim9 script.
 
 **Requirement:** Vim 9.0 or above
 
+## Project Search
+
+When available, ripgrep powers `:grep` from Vim's current working directory.
+The search includes hidden files, excludes `.git`, and respects ignore files.
+Without ripgrep, Vim keeps its platform-default grep configuration.
+
+Search and navigate the quickfix results with:
+
+```vim
+:grep pattern
+:copen
+:cnext
+:cprev
+```
+
+On Unix, use `:silent grep pattern` to avoid the hit-enter prompt produced by
+the external command.
+
 ## LSP Plugin
 
 The Vim configuration requires the `yegappan/lsp` plugin. Install it in Vim's

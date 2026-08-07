@@ -9,6 +9,12 @@ syntax on
 # Enable filetype plugins & indent files
 filetype plugin indent on
 
+# Use ripgrep for project search when available
+if executable('rg')
+  &grepprg = 'rg --vimgrep --smart-case --hidden --glob ''!.git'''
+  &grepformat = '%f:%l:%c:%m'
+endif
+
 # Don't create backup files
 set nowb
 
