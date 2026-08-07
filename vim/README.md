@@ -6,7 +6,8 @@ Personal Vim 9+ configuration using Vim9 script.
 
 ## LSP Plugin
 
-Install the `yegappan/lsp` plugin:
+The Vim configuration requires the `yegappan/lsp` plugin. Install it in Vim's
+optional package directory:
 
 ```bash
 mkdir -p ~/.config/vim/pack/vendor/opt
@@ -15,18 +16,23 @@ git clone https://github.com/yegappan/lsp
 vim -u NONE -c "helptags ~/.config/vim/pack/vendor/opt/lsp/doc" -c q
 ```
 
-Enable LSP for a filetype by adding a server configuration to your vimrc:
+If the plugin is missing, Vim reports an error while loading the LSP
+configuration.
+
+## Language Servers
+
+Language servers are configured in `plugin/lsp.vim`. Missing server
+executables are skipped without preventing Vim from starting.
+
+| Filetypes | Server |
+| --- | --- |
+| `go`, `gomod` | `gopls` |
+
+Use the following command to inspect registered servers:
 
 ```vim
-vim9script
-
-# Example: Go language server
-LspAddServer([{
-    name: 'gopls',
-    filetype: ['go', 'gomod'],
-    path: '/usr/local/bin/gopls',
-    args: ['serve'],
-}])
+:LspShowAllServers
 ```
 
-See [yegappan/lsp](https://github.com/yegappan/lsp) for full documentation and available language servers.
+See [yegappan/lsp](https://github.com/yegappan/lsp) for full plugin
+documentation and available language servers.
