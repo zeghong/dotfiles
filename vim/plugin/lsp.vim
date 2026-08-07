@@ -23,6 +23,8 @@ def ConfigureLspNavigation()
   nnoremap <buffer> <silent> <leader>r <Cmd>LspShowReferences<CR>
   nnoremap <buffer> <silent> <leader>i <Cmd>LspGotoImpl<CR>
   nnoremap <buffer> <silent> <leader>h <Cmd>LspHover<CR>
+  nnoremap <buffer> <silent> [d <Cmd>LspDiag prev<CR>
+  nnoremap <buffer> <silent> ]d <Cmd>LspDiag next<CR>
 enddef
 
 augroup lsp_navigation

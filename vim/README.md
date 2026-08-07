@@ -54,6 +54,8 @@ Navigation mappings are added to a buffer after its language server attaches:
 | `,r` | Show references |
 | `,i` | Go to implementation |
 | `,h` | Show hover information |
+| `[d` | Go to the previous diagnostic |
+| `]d` | Go to the next diagnostic |
 
 Use the following command to inspect registered servers:
 
