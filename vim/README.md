@@ -28,6 +28,15 @@ executables are skipped without preventing Vim from starting.
 | --- | --- |
 | `go`, `gomod` | `gopls` |
 
+Navigation mappings are added to a buffer after its language server attaches:
+
+| Mapping | Action |
+| --- | --- |
+| `,d` | Go to definition |
+| `,r` | Show references |
+| `,i` | Go to implementation |
+| `,h` | Show hover information |
+
 Use the following command to inspect registered servers:
 
 ```vim

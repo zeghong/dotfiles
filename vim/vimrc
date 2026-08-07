@@ -1,5 +1,8 @@
 vim9script
 
+# Use comma as the prefix for custom mappings
+g:mapleader = ','
+
 # Enable syntax highlighting
 syntax on
 
