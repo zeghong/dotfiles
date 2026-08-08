@@ -1,0 +1,208 @@
+vim9script
+
+# An unofficial, independent Vim 9 implementation of the Nord color palette.
+# Palette source: https://github.com/nordtheme/nord
+
+set background=dark
+highlight clear
+g:colors_name = 'nord'
+
+const GUI: dict<string> = {
+  nord0: '#2e3440',
+  nord1: '#3b4252',
+  nord2: '#434c5e',
+  nord3: '#4c566a',
+  nord4: '#d8dee9',
+  nord5: '#e5e9f0',
+  nord6: '#eceff4',
+  nord7: '#8fbcbb',
+  nord8: '#88c0d0',
+  nord9: '#81a1c1',
+  nord10: '#5e81ac',
+  nord11: '#bf616a',
+  nord12: '#d08770',
+  nord13: '#ebcb8b',
+  nord14: '#a3be8c',
+  nord15: '#b48ead',
+
+  # Brightened nord3 used by nordtheme/vim for readable comments.
+  comment: '#616e88',
+}
+
+# Fixed xterm-256 approximations preserve the palette's visual hierarchy when
+# 24-bit color is unavailable. They intentionally do not depend on ANSI 0-15.
+const CTERM: dict<number> = {
+  nord0: 236,
+  nord1: 237,
+  nord2: 238,
+  nord3: 240,
+  nord4: 253,
+  nord5: 254,
+  nord6: 255,
+  nord7: 109,
+  nord8: 116,
+  nord9: 110,
+  nord10: 67,
+  nord11: 131,
+  nord12: 173,
+  nord13: 222,
+  nord14: 150,
+  nord15: 139,
+
+  comment: 60,
+}
+
+def Highlight(
+    group: string,
+    foreground: string = '',
+    background: string = '',
+    gui_style: string = 'NONE',
+    special: string = '',
+    cterm_style: string = '')
+  var command = $'highlight {group}'
+
+  if foreground != ''
+    command ..= $' guifg={GUI[foreground]} ctermfg={CTERM[foreground]}'
+  else
+    command ..= ' guifg=NONE ctermfg=NONE'
+  endif
+
+  if background != ''
+    command ..= $' guibg={GUI[background]} ctermbg={CTERM[background]}'
+  else
+    command ..= ' guibg=NONE ctermbg=NONE'
+  endif
+
+  command ..= $' gui={gui_style}'
+  command ..= $' cterm={cterm_style == '' ? gui_style : cterm_style}'
+  command ..= $' guisp={special == '' ? 'NONE' : GUI[special]}'
+  execute command
+enddef
+
+def Link(group: string, target: string)
+  execute $'highlight! link {group} {target}'
+enddef
+
+# Editor canvas and cursor.
+Highlight('Normal', 'nord4', 'nord0')
+Link('NormalNC', 'Normal')
+Highlight('Cursor', 'nord0', 'nord4')
+Link('lCursor', 'Cursor')
+Link('CursorIM', 'Cursor')
+Highlight('CursorLine', '', 'nord1')
+Link('CursorColumn', 'CursorLine')
+Highlight('ColorColumn', '', 'nord1')
+
+# Gutter, folds, and structural separators.
+Highlight('LineNr', 'nord3', 'nord0')
+Link('LineNrAbove', 'LineNr')
+Link('LineNrBelow', 'LineNr')
+Highlight('CursorLineNr', 'nord8', '', 'bold')
+Highlight('SignColumn', 'nord3', 'nord0')
+Highlight('FoldColumn', 'nord3', 'nord0')
+Highlight('Folded', 'nord4', 'nord1')
+Highlight('WinSeparator', 'nord3', 'nord0')
+Link('VertSplit', 'WinSeparator')
+
+# Selection, search, and matching.
+Highlight('Visual', '', 'nord2')
+Link('VisualNOS', 'Visual')
+Highlight('Search', 'nord4', 'nord2')
+Highlight('CurSearch', 'nord1', 'nord8', 'bold')
+Link('IncSearch', 'CurSearch')
+Link('Substitute', 'CurSearch')
+Highlight('MatchParen', 'nord8', 'nord3', 'bold')
+
+# Completion and command-line menus.
+Highlight('Pmenu', 'nord4', 'nord1')
+Highlight('PmenuSel', 'nord8', 'nord2')
+Highlight('PmenuSbar', '', 'nord1')
+Highlight('PmenuThumb', '', 'nord3')
+Highlight('PmenuKind', 'nord7', 'nord1')
+Highlight('PmenuKindSel', 'nord7', 'nord2')
+Highlight('PmenuExtra', 'nord3', 'nord1')
+Highlight('PmenuExtraSel', 'nord3', 'nord2')
+Highlight('WildMenu', 'nord8', 'nord2')
+
+# Status lines and tabs.
+Highlight('StatusLine', 'nord8', 'nord3')
+Highlight('StatusLineNC', 'nord4', 'nord1')
+Link('StatusLineTerm', 'StatusLine')
+Link('StatusLineTermNC', 'StatusLineNC')
+Highlight('TabLine', 'nord4', 'nord1')
+Highlight('TabLineSel', 'nord8', 'nord3')
+Highlight('TabLineFill', 'nord3', 'nord0')
+
+# Diff uses one quiet surface; semantic foregrounds identify the change type.
+Highlight('DiffAdd', 'nord14', 'nord1')
+Highlight('DiffDelete', 'nord11', 'nord1')
+Highlight('DiffChange', 'nord13', 'nord1')
+Highlight('DiffText', 'nord13', 'nord2', 'bold')
+
+# Messages and transient editor states.
+Highlight('ErrorMsg', 'nord4', 'nord11', 'bold')
+Highlight('WarningMsg', 'nord13', 'nord0', 'bold')
+Highlight('MoreMsg', 'nord14', 'nord0')
+Highlight('Question', 'nord8', 'nord0')
+Highlight('ModeMsg', 'nord8', 'nord0', 'bold')
+Highlight('Title', 'nord8', 'nord0', 'bold')
+Highlight('Directory', 'nord8', 'nord0')
+Highlight('QuickFixLine', 'nord8', 'nord2', 'bold')
+
+# Low-attention and concealed editor content.
+Highlight('NonText', 'nord3', 'nord0')
+Link('Whitespace', 'NonText')
+Link('SpecialKey', 'NonText')
+Highlight('EndOfBuffer', 'nord0', 'nord0')
+Highlight('Conceal', 'nord3', 'nord0')
+
+# Vim's standard syntax groups form the semantic base for filetype-specific
+# links added by later integration layers.
+Highlight('Comment', 'comment')
+
+Highlight('Constant', 'nord4')
+Highlight('String', 'nord14')
+Link('Character', 'String')
+Highlight('Number', 'nord15')
+Link('Float', 'Number')
+Highlight('Boolean', 'nord9')
+
+Highlight('Identifier', 'nord4')
+Highlight('Function', 'nord8')
+
+Highlight('Statement', 'nord9')
+Link('Conditional', 'Statement')
+Link('Repeat', 'Statement')
+Link('Label', 'Statement')
+Link('Operator', 'Statement')
+Link('Keyword', 'Statement')
+Link('Exception', 'Statement')
+
+Highlight('PreProc', 'nord9')
+Link('Include', 'PreProc')
+Link('Define', 'PreProc')
+Link('Macro', 'PreProc')
+Link('PreCondit', 'PreProc')
+
+Highlight('Type', 'nord9')
+Link('StorageClass', 'Type')
+Link('Structure', 'Type')
+Link('Typedef', 'Type')
+
+Highlight('Special', 'nord4')
+Highlight('SpecialChar', 'nord13')
+Link('Tag', 'Special')
+Highlight('Delimiter', 'nord6')
+Link('SpecialComment', 'SpecialChar')
+Highlight('Debug', 'nord12')
+
+Highlight('Underlined', 'nord8', '', 'underline')
+Highlight('Ignore', 'nord3')
+Highlight('Error', 'nord4', 'nord11', 'bold')
+Highlight('Todo', 'nord13', 'nord1', 'bold')
+
+# Spell checking augments syntax colors instead of replacing them.
+Highlight('SpellBad', '', '', 'undercurl', 'nord11', 'underline')
+Highlight('SpellCap', '', '', 'undercurl', 'nord13', 'underline')
+Highlight('SpellLocal', '', '', 'undercurl', 'nord8', 'underline')
+Highlight('SpellRare', '', '', 'undercurl', 'nord15', 'underline')
