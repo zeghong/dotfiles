@@ -147,7 +147,8 @@ Highlight('Question', 'nord8', 'nord0')
 Highlight('ModeMsg', 'nord8', 'nord0', 'bold')
 Highlight('Title', 'nord8', 'nord0', 'bold')
 Highlight('Directory', 'nord8', 'nord0')
-Highlight('QuickFixLine', 'nord8', 'nord2', 'bold')
+# Keep syntax colors visible while marking the selected quickfix entry.
+Highlight('QuickFixLine', '', 'nord2')
 
 # Low-attention and concealed editor content.
 Highlight('NonText', 'nord3', 'nord0')
@@ -283,3 +284,72 @@ Highlight('Changed', 'nord13')
 Link('diffAdded', 'Added')
 Link('diffRemoved', 'Removed')
 Link('diffChanged', 'Changed')
+
+# yegappan/lsp diagnostics keep syntax colors intact and add severity through
+# signs, undercurls, or virtual text.  No diagnostic paints the whole line.
+Highlight('LspDiagLine')
+Highlight('LspDiagSignErrorText', 'nord11')
+Highlight('LspDiagSignWarningText', 'nord13')
+Highlight('LspDiagSignInfoText', 'nord8')
+Highlight('LspDiagSignHintText', 'nord10')
+Highlight('LspDiagInlineError', '', '', 'undercurl', 'nord11', 'underline')
+Highlight('LspDiagInlineWarning', '', '', 'undercurl', 'nord13', 'underline')
+Highlight('LspDiagInlineInfo', '', '', 'undercurl', 'nord8', 'underline')
+Highlight('LspDiagInlineHint', '', '', 'undercurl', 'nord10', 'underline')
+Highlight('LspDiagVirtualTextError', 'nord11', 'nord1')
+Highlight('LspDiagVirtualTextWarning', 'nord13', 'nord1')
+Highlight('LspDiagVirtualTextInfo', 'nord8', 'nord1')
+Highlight('LspDiagVirtualTextHint', 'nord10', 'nord1')
+
+# Vim's quickfix syntax recognizes the literal error severity in location
+# lists.  Use a foreground only so selection and severity can compose.
+Highlight('qfError', 'nord11')
+
+# Popups and document references use quiet surfaces instead of borrowing
+# search, diff, and error semantics from the plugin defaults.
+Link('LspPopup', 'Pmenu')
+Highlight('LspPopupBorder', 'nord3', 'nord1')
+Highlight('LspTextRef', '', 'nord2')
+Highlight('LspReadRef', '', 'nord2')
+Highlight('LspWriteRef', '', 'nord2')
+Highlight('LspInlayHintsType', 'nord9', '', 'italic')
+Highlight('LspInlayHintsParam', 'nord3', '', 'italic')
+Highlight('LspSigActiveParameter', 'nord8', '', 'underline')
+Link('LspSymbolName', 'Search')
+Link('LspSymbolRange', 'Visual')
+
+# Preserve Markdown emphasis in hover and signature content across theme
+# reloads; yegappan otherwise defines these styles only when its parser loads.
+Highlight('LspBold', '', '', 'bold')
+Highlight('LspItalic', '', '', 'italic')
+Highlight('LspStrikeThrough', '', '', 'strikethrough')
+
+# Semantic tokens reuse the core vocabulary.  Function and method tokens are
+# deliberately neutral: yegappan currently discards token modifiers, so it
+# cannot distinguish declarations, calls, and default-library functions.  Its
+# combined text properties therefore leave the underlying syntax color visible.
+Link('LspSemanticNamespace', 'Type')
+Link('LspSemanticType', 'Type')
+Link('LspSemanticClass', 'Type')
+Link('LspSemanticEnum', 'Type')
+Link('LspSemanticInterface', 'Type')
+Link('LspSemanticStruct', 'Type')
+Link('LspSemanticTypeParameter', 'Type')
+Link('LspSemanticParameter', 'Identifier')
+Link('LspSemanticVariable', 'Identifier')
+Link('LspSemanticProperty', 'Identifier')
+Link('LspSemanticEnumMember', 'Constant')
+Link('LspSemanticEvent', 'Identifier')
+# A special color without an underline is visually inert, but marks each group
+# as defined so a later `highlight default` cannot relink it to Function.
+Highlight('LspSemanticFunction', '', '', 'NONE', 'nord0')
+Highlight('LspSemanticMethod', '', '', 'NONE', 'nord0')
+Link('LspSemanticMacro', 'Macro')
+Link('LspSemanticKeyword', 'Keyword')
+Link('LspSemanticModifier', 'Type')
+Link('LspSemanticComment', 'Comment')
+Link('LspSemanticString', 'String')
+Link('LspSemanticNumber', 'Number')
+Link('LspSemanticRegexp', 'String')
+Link('LspSemanticOperator', 'Operator')
+Highlight('LspSemanticDecorator', 'nord12')
