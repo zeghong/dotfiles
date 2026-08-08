@@ -1,0 +1,6 @@
+diff --git a/theme.vim b/theme.vim
+--- a/theme.vim
++++ b/theme.vim
+@@ -1 +1 @@
+-let theme = 'default'
++let theme = 'nord'

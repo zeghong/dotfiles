@@ -16,6 +16,10 @@ export def HasCtermStyle(group: string, style: string): bool
   return synIDattr(synIDtrans(hlID(group)), style, 'cterm') ==# '1'
 enddef
 
+export def SyntaxGroup(line: number, column: number): string
+  return synIDattr(synID(line, column, true), 'name')
+enddef
+
 export def AssertLink(group: string, target: string)
   var definition = hlget(group)
   assert_equal(1, definition->len(), $'{group} should exist')

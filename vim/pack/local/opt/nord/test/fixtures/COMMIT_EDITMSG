@@ -1,0 +1,15 @@
+feat(vim): add nord mappings
+
+# On branch main
+# Changes to be committed:
+#	modified:   vim/vimrc
+#
+# Changes not staged for commit:
+#	modified:   vim/README.md
+#
+# Unmerged paths:
+#	both modified:   vim/colors.vim
+#
+# Untracked files:
+#
+#	test.tmp
