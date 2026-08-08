@@ -9,6 +9,16 @@ syntax on
 # Enable filetype plugins & indent files
 filetype plugin indent on
 
+# Use true colors when Vim supports them; the colorscheme also has a
+# 256-color fallback for less capable builds.
+if has('termguicolors')
+  set termguicolors
+endif
+
+# Load the local Nord colorscheme package.
+packadd nord
+colorscheme nord
+
 # Reload unmodified files changed outside Vim
 set autoread
 

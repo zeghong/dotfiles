@@ -29,3 +29,10 @@ do
     done
   done
 done
+
+printf 'nord startup (real vimrc)\n'
+if ! "$vim_bin" -N -n -i NONE -es -u "$test_dir/test_startup.vim"
+then
+  "$vim_bin" -N -n -i NONE -es -V1 -u "$test_dir/test_startup.vim"
+  exit 1
+fi

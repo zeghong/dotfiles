@@ -4,6 +4,14 @@ Personal Vim 9+ configuration using Vim9 script.
 
 **Requirement:** Vim 9.0 or above
 
+## Colorscheme
+
+The configuration enables the local, optional `nord` package. It uses truecolor
+when supported and otherwise falls back to a curated xterm-256 mapping.
+
+See the [package README](pack/local/opt/nord/README.md) for its design,
+terminal boundary, testing instructions, and attribution.
+
 ## Project Search
 
 When available, ripgrep powers `:grep` from Vim's current working directory.
