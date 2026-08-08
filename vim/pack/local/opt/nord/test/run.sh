@@ -7,7 +7,7 @@ vim_bin=${VIM:-vim}
 
 for mode in truecolor cterm
 do
-  for suite in core filetypes lsp
+  for suite in core filetypes lsp terminal
   do
     if [ "$suite" = lsp ]
     then

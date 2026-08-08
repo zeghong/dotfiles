@@ -353,3 +353,29 @@ Link('LspSemanticNumber', 'Number')
 Link('LspSemanticRegexp', 'String')
 Link('LspSemanticOperator', 'Operator')
 Highlight('LspSemanticDecorator', 'nord12')
+
+# Vim's built-in terminal uses the editor canvas for its default colors.
+Highlight('Terminal', 'nord4', 'nord0')
+
+# ANSI 0-15 mirrors Ghostty's built-in Nord theme so the outer shell and a
+# Vim :terminal render indexed programs consistently.  Slot 8 is Ghostty's
+# brighter black; ANSI 16-255 and direct RGB remain Vim/xterm responsibilities.
+const TERMINAL_ANSI: list<string> = [
+  '#3b4252', # 0  black
+  '#bf616a', # 1  red
+  '#a3be8c', # 2  green
+  '#ebcb8b', # 3  yellow
+  '#81a1c1', # 4  blue
+  '#b48ead', # 5  magenta
+  '#88c0d0', # 6  cyan
+  '#e5e9f0', # 7  white
+  '#596377', # 8  bright black (Ghostty Nord)
+  '#bf616a', # 9  bright red
+  '#a3be8c', # 10 bright green
+  '#ebcb8b', # 11 bright yellow
+  '#81a1c1', # 12 bright blue
+  '#b48ead', # 13 bright magenta
+  '#8fbcbb', # 14 bright cyan
+  '#eceff4', # 15 bright white
+]
+g:terminal_ansi_colors = TERMINAL_ANSI->copy()
